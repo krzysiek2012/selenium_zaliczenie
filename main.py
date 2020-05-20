@@ -86,10 +86,8 @@ class TestRoweria(unittest.TestCase):
 
         driver.execute_script("arguments[0].click();", zarejestruj)
 
-        #akcept_warunki = driver.find_element_by_xpath('//input[@id="terms_agree"]')
 
-        #drive.execute_script("arguments[0].click();", akcept_warunki)
-        bledy = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p[text()="Niepoprawny kod pocztowy."]')
+        bledy = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p')
 
         visible_error_noticed = []
 
@@ -97,23 +95,14 @@ class TestRoweria(unittest.TestCase):
             if error.is_displayed():
                 visible_error_noticed.append(error)
 
-        assert len(visible_error_noticed) == 1
+        assert len(visible_error_noticed) == 2
 
-        error_text = visible_error_noticed[0].get_attribute("innerText")
-        assert error_text == "Niepoprawny kod pocztowy."
+        error_text_1 = visible_error_noticed[0].get_attribute("innerText")
+        assert error_text_1 == "Niepoprawny kod pocztowy."
 
-        blad2 = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p[text()="Niepoprawny kod pocztowy odbiorcy."]')
-
-        visible_error_noticed_2 = []
-
-        for error_2 in blad2:
-            if error_2.is_displayed():
-                visible_error_noticed_2.append(error_2)
-
-        assert len(visible_error_noticed_2) == 1
-
-        error_text_2 = visible_error_noticed_2[0].get_attribute("innerText")
+        error_text_2 = visible_error_noticed[1].get_attribute("innerText")
         assert error_text_2 == "Niepoprawny kod pocztowy odbiorcy."
+
 
         #ceke debagowe
         time.sleep(5)
