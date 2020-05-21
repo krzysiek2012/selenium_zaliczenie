@@ -7,20 +7,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-firma = "Kris"
-nip_code = "Krisowy"
-ulica = "Krisowa"
+firma = "Prywatna"
+nip_code = "111-222-333"
+ulica = "Kokosowa"
 kod = "xx"
-miasto = "Olesnica"
-imie = "Krisek"
-nazwisko = "Olo"
-i_majl = "kiko@gmail.com"
+miasto = "Pacanow"
+imie = "Grażka"
+nazwisko = "Zbyszkowa"
+i_majl = "kiko@noreplay.github.com"
 fon = "123456789"
 logyn = "okimoki"
 haslo = "123kokoK456"
 
 class TestRoweria(unittest.TestCase):
     def setUp(self):
+
         """
         Warunki wstepne
         """
@@ -33,7 +34,7 @@ class TestRoweria(unittest.TestCase):
     def testDoProjektu(self):
 
         """
-        TC = 01: testowanie strony roweria.pl - zalogowanie
+        TC = 01: testowanie strony roweria.pl - błędny kod pocztowy...
         """
 
         driver = self.driver
@@ -86,7 +87,6 @@ class TestRoweria(unittest.TestCase):
 
         driver.execute_script("arguments[0].click();", zarejestruj)
 
-
         bledy = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p')
 
         visible_error_noticed = []
@@ -98,6 +98,7 @@ class TestRoweria(unittest.TestCase):
         assert len(visible_error_noticed) == 2
 
         print('\n\n\tcoz_takiego_jeste_w_boksie_z_bledami:\n')
+
         for arg in visible_error_noticed:
             print(arg.get_attribute("innerText"))
 
