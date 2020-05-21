@@ -39,54 +39,68 @@ class TestRoweria(unittest.TestCase):
 
         driver = self.driver
 
+        #Kliknij "ZALOGUJ SIE"
         znajdz_zaloguj = WebDriverWait(driver,30).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="account_link link hidden-phone"]'))).click()
 
-        #znajdz_zaloguj_sie = driver.find_element_by_xpath('//a[@class="account_link link hidden-phone"]').click()
-
-
+        #Znajdz przycisk "ZALOZ NOWE KONTO"
         znajdz_buton = WebDriverWait(driver,30).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="btn signin-form_register2"]'))).click()
 
-        #znajdz_nowe_k = driver.find_element_by_xpath('//a[@class="btn signin-form_register2"]').click()
-
+        #Wybierz "Firma" w sekcji dane do faktury
         wybierz_firma = driver.find_element_by_xpath('//input[@id="client_type1"]').click()
 
+        #Wpisz nazwę firmy
         Firma = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_firm'))).send_keys(firma)
 
+        #Wpisz NIP
         NIP = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_nip'))).send_keys(nip_code)
 
+        #Wpisz "Ulicę i numer"
         Street = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_street'))).send_keys(ulica)
 
+        #Wpisz "kod pocztowy"
         Postal = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_zipcode'))).send_keys(kod)
 
+        #Wpisz "miasto"
         City = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_city'))).send_keys(miasto)
 
-        #przewijam stronę na dół
+        #Przewin strone w dol
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight/3.5);window.scrollTo(0, document.body.scrollHeight/3.7);")
 
+        #Wpisz "Imie" w sekcji dane kontaktowe
         Firsname = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_firstname'))).send_keys(imie)
 
+        #Wpisz "Nazwisko"
         Surname = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_lastname'))).send_keys(nazwisko)
 
+        #wpisz "Adres e-mail"
         Wrong_mail = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_email'))).send_keys(i_majl)
 
+        #Zaznacz box "Chce otrzymywac newsletter"
         newsletter = driver.find_element_by_xpath('//input[@id="client_mailing"]').click()
 
+        #Wpisz "Telefon"
         tele = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_phone'))).send_keys(fon)
 
+        #Wpisz "Login"
         login = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_login'))).send_keys(logyn)
 
+        #Wpisz "hasło"
         haslo_1 = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'client_password'))).send_keys(haslo)
 
+        #Powtórz "hasło"
         haslo_2 = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.ID, 'repeat_password'))).send_keys(haslo)
 
+        #Zaznacz box "Zaakceptuj warunki"
         akceptacja = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.XPATH, '//input[@id="terms_agree"]')))
 
         driver.execute_script("arguments[0].click();", akceptacja)
 
+        #Kliknij "ZAREJESTRUJ KONTO"
         zarejestruj = WebDriverWait(driver, 45).until(EC.element_to_be_clickable((By.XPATH, '//button[@id="submit_clientnew_form"]')))
 
         driver.execute_script("arguments[0].click();", zarejestruj)
 
+        #Znajdz bledy na stronie
         bledy = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p')
 
         visible_error_noticed = []
