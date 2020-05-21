@@ -97,6 +97,11 @@ class TestRoweria(unittest.TestCase):
 
         assert len(visible_error_noticed) == 2
 
+        print('\n\n\tcoz_takiego_jeste_w_boksie_z_bledami:\n')
+        for arg in visible_error_noticed:
+            print(arg.get_attribute("innerText"))
+
+
         error_text_1 = visible_error_noticed[0].get_attribute("innerText")
         assert error_text_1 == "Niepoprawny kod pocztowy."
 
@@ -104,14 +109,14 @@ class TestRoweria(unittest.TestCase):
         assert error_text_2 == "Niepoprawny kod pocztowy odbiorcy."
 
 
-        #ceke debagowe
-        time.sleep(5)
+        print('\n\tTest_completed_go_home\n')
 
     def tearDown(self):
         """
         sprzatanie po tescie
         """
         self.driver.quit()
+
 
 
 
