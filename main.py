@@ -9,23 +9,18 @@ from selenium.webdriver.support import expected_conditions as EC
 
 firma = "Prywatna"
 nip_code = "111-222-333"
-ulica = "Kokosowa"
+ulica = "Kokosowa 5"
 kod = "xx"
 miasto = "Pacanow"
 imie = "Grażka"
 nazwisko = "Zbyszkowa"
-i_majl = "kiko@noreplay.github.com"
+i_majl = "kiko.@noreplay.github.com"
 fon = "123456789"
 logyn = "okimoki"
 haslo = "123kokoK456"
 
 class TestRoweria(unittest.TestCase):
     def setUp(self):
-
-        """
-        Warunki wstepne
-        """
-        #przegladarka wlaczona
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.get("https://roweria.pl")
@@ -34,7 +29,7 @@ class TestRoweria(unittest.TestCase):
     def testDoProjektu(self):
 
         """
-        TC = 01: testowanie strony roweria.pl - błędny kod pocztowy...
+        TC = 01: testowanie strony roweria.pl - błędny kod pocztowy oraz adres e-mail...
         """
 
         driver = self.driver
@@ -109,27 +104,27 @@ class TestRoweria(unittest.TestCase):
             if error.is_displayed():
                 visible_error_noticed.append(error)
 
-        assert len(visible_error_noticed) == 2
+        assert len(visible_error_noticed) == 3
 
-        print('\n\n\tcoz_takiego_jeste_w_boksie_z_bledami:\n')
+        print('\n\n\tcoz_takiego_jest_w_boksie_z_bledami:\n')
 
         for arg in visible_error_noticed:
             print(arg.get_attribute("innerText"))
 
-
         error_text_1 = visible_error_noticed[0].get_attribute("innerText")
-        assert error_text_1 == "Niepoprawny kod pocztowy."
+        assert error_text_1 == "Adres e-mail jest błędny."
 
         error_text_2 = visible_error_noticed[1].get_attribute("innerText")
-        assert error_text_2 == "Niepoprawny kod pocztowy odbiorcy."
+        assert error_text_2 == "Niepoprawny kod pocztowy."
+
+        error_text_3 = visible_error_noticed[2].get_attribute("innerText")
+        assert error_text_3 == "Niepoprawny kod pocztowy odbiorcy."
+
 
 
         print('\n\tTest_completed_go_home\n')
 
     def tearDown(self):
-        """
-        sprzatanie po tescie
-        """
         self.driver.quit()
 
 
