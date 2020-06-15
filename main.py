@@ -99,6 +99,8 @@ class TestRoweria(unittest.TestCase):
         bledy = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p')
 
         #zapis w jednej linijce zamiast iteracji w for loop
+        #pierwszy error jest tak jak by z lini append, można nim wykonywać jakieś
+        #operacje jak np potegowanie albo inne rzeczy ciekawe
         visible_error_noticed = [error for error in bledy if error.is_displayed()]
 
         #if error.is_displayed():
