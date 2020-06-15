@@ -98,11 +98,12 @@ class TestRoweria(unittest.TestCase):
         #Znajdz bledy na stronie
         bledy = driver.find_elements_by_xpath('//div[@class="menu_messages_warning_sub"]/p')
 
-        visible_error_noticed = []
+        #zapis w jednej linijce zamiast iteracji w for loop
+        visible_error_noticed = [error for error in bledy if error.is_displayed()]
 
-        for error in bledy:
-            if error.is_displayed():
-                visible_error_noticed.append(error)
+        #if error.is_displayed():
+        #for error in bledy:
+                #visible_error_noticed.append(error)
 
         assert len(visible_error_noticed) == 3
 
